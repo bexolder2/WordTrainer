@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="MainPurpleBrush" Color="#7d4dcd"/>
+    <SolidColorBrush x:Key="Black80Brush" Color="#000000" Opacity="0.8"/>
+</ResourceDictionary>

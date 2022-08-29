@@ -18,16 +18,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Dialogs\AddWordDialog.xaml" />
+    <None Remove="Styles\Brushes.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Styles\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\WordTrainer.Factory\WordTrainer.Factory.csproj" />
     <ProjectReference Include="..\WordTrainer.ViewModels\WordTrainer.ViewModels.csproj" />
   </ItemGroup>
 

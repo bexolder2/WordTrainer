@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WordTrainer.Database\WordTrainer.Database.csproj" />
+    <ProjectReference Include="..\WordTrainer.Factory\WordTrainer.Factory.csproj" />
     <ProjectReference Include="..\WordTrainer.Models\WordTrainer.Models.csproj" />
   </ItemGroup>
 
