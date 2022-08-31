@@ -7,64 +7,53 @@
         xmlns:local="clr-namespace:WordTrainer"
         mc:Ignorable="d"
         Title="MainWindow">
-    <Window.Resources>
-        <DataTemplate x:Key="CellWithButton">
-            <Grid>
-                <TextBlock Text="{Binding NativeWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           VerticalAlignment="Center"/>
-
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                        Margin="10,0,0,0"
-                        Width="30"
-                        Height="30">
-                    <materialDesign:PackIcon Kind="DeleteForever" 
-                                             Height="20" 
-                                             Width="20"/>
-                </Button>
-            </Grid>
-        </DataTemplate>
-    </Window.Resources>
-
     <Grid>
-        <DataGrid HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  Margin="10"
-                  AutoGenerateColumns="False"
-                  ItemsSource="{Binding Words, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ENG" 
-                                    Width="*"
-                                    Binding="{Binding TranslatedWord}"/>
-                <DataGridTemplateColumn Header="RUS"
-                                        Width="*"
-                                        CellTemplate="{StaticResource CellWithButton}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <TabControl materialDesign:ColorZoneAssist.Mode="Standard"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="BookAlphabet" 
+                                                 Width="30" 
+                                                 Height="30"
+                                                 HorizontalAlignment="Center"/>
+                        <TextBlock Text="Dictionary"
+                                   FontSize="10"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="DictionaryFrame"/>
+            </TabItem>
 
-        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                Width="40"
-                Height="40"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Margin="0,0,20,20"
-                Command="{Binding AddWordCommand}">
-            <materialDesign:PackIcon Kind="PlusCircle" 
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch"
-                                     Height="38"
-                                     Width="38"/>
-        </Button>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="School"
+                                                 Width="30" 
+                                                 Height="30"
+                                                 HorizontalAlignment="Center" />
+                        <TextBlock Text="Training"
+                                   FontSize="10"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="TrainingFrame"/>
+            </TabItem>
 
-        <!-- reserved dialogs place -->
-
-        <Grid x:Name="DialogGrid"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              Background="{StaticResource Black80Brush}"
-              Visibility="Collapsed">
-            <Grid.Effect>
-                <BlurEffect/>
-            </Grid.Effect>
-        </Grid>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Cog" 
+                                                 Width="30" 
+                                                 Height="30"
+                                                 HorizontalAlignment="Center"/>
+                        <TextBlock Text="Settings"
+                                   FontSize="10"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame x:Name="SettingsFrame"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using WordTrainer.Dialogs;
-using WordTrainer.Factory;
 using WordTrainer.Models.Interfaces;
+using WordTrainer.Pages;
 using WordTrainer.ViewModels;
 
 namespace WordTrainer
@@ -33,6 +33,10 @@ namespace WordTrainer
             Factory.Factory.Instance.RegisterType(typeof(IAddWordDialog), typeof(AddWordDialog));
 
             Factory.Factory.Instance.RegisterType(typeof(IAddWordViewModel), typeof(AddWordViewModel));
+
+            Factory.Factory.Instance.RegisterType(typeof(IDictionaryPage), typeof(DictionaryPage));
+            Factory.Factory.Instance.RegisterType(typeof(ITrainingPage), typeof(TrainingPage));
+            Factory.Factory.Instance.RegisterType(typeof(ISettingsPage), typeof(SettingsPage));
         }
 
         protected override void OnStartup(StartupEventArgs e)
