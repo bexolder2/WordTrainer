@@ -3,4 +3,6 @@
 
     <SolidColorBrush x:Key="MainPurpleBrush" Color="#7d4dcd"/>
     <SolidColorBrush x:Key="Black80Brush" Color="#000000" Opacity="0.8"/>
+    <SolidColorBrush x:Key="GrayBrush" Color="#edaaff" Opacity="0.8"/>
+    <SolidColorBrush x:Key="PageBackgroundBrush" Color="#9fa8da" Opacity="0.8"/>
 </ResourceDictionary>

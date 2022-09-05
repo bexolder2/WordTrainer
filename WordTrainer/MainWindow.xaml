@@ -9,7 +9,8 @@
         Title="MainWindow">
     <Grid>
         <TabControl materialDesign:ColorZoneAssist.Mode="Standard"
-                    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                    Background="{StaticResource PageBackgroundBrush}">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Vertical">
