@@ -43,7 +43,14 @@ namespace WordTrainer.ViewModels
 
         private void AddWordExecute(object _)
         {
-            CloseDialog?.Invoke(this, Word);
+            if (!string.IsNullOrWhiteSpace(Word.NativeWord) && !string.IsNullOrWhiteSpace(Word.TranslatedWord))
+            {
+                CloseDialog?.Invoke(this, Word);
+            }
+            else
+            {
+                //TODO: message box
+            }
         }
 
         private void CancelExecute(object _)

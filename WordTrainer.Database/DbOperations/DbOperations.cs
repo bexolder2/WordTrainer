@@ -35,14 +35,10 @@ namespace WordTrainer.Database.DbOperations
 
                 if (wordFromDb != null)
                 {
+                    db.Remove(wordFromDb);
                     wordFromDb = null;
-                    DeleteWord(id);
-                    AddOrUpdateWord(model);
                 }
-                else
-                {
-                    db.UsersWords.Add(model);
-                }
+                db.UsersWords.Add(model);
                 db.SaveChanges();
             }
         }
@@ -59,10 +55,13 @@ namespace WordTrainer.Database.DbOperations
         {
             using (ApplicationDbContext db = new())
             {
-                var model = db.UsersWords.FirstOrDefault(word => word.Id == id);
-                db.Remove(model);
-                db.SaveChanges();
-            }
+                var model = context.UsersWords.FirstOrDefault(word => word.Id == id);
+                if (model != null)
+                {
+                    context.Remove(model);
+                    context.SaveChanges();
+                }
+            }   
         }
     }
 }

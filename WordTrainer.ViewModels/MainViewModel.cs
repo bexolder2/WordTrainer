@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WordTrainer.Database.DbOperations;
 using WordTrainer.Factory;
@@ -28,11 +29,13 @@ namespace WordTrainer.ViewModels
         }
 
         public ICommand AddWordCommand { get; private set; }
+        public ICommand DeleteWordCommand { get; private set; }
         #endregion
 
         public MainViewModel()
         {
             AddWordCommand = new LambdaCommand(AddWordExecute);
+            DeleteWordCommand = new LambdaCommand(DeleteWordExecute);
 
             InitializeWorlds();
         }
@@ -44,14 +47,26 @@ namespace WordTrainer.ViewModels
             Words = new(DbOperations.GetWords());
 #elif Test
             Words = new();
-            Words.Add(new Word { Id = 0, NativeWord = "тест", TranslatedWord = "test", Status = WordStatus.Learned});
-            Words.Add(new Word { Id = 0, NativeWord = "кот", TranslatedWord = "cat", Status = WordStatus.NeedToLearn});
-            Words.Add(new Word { Id = 0, NativeWord = "бобек", TranslatedWord = "dog", Status = WordStatus.NeedToRepeat});
+            Words.Add(new Word { NativeWord = "тест", TranslatedWord = "test", Status = WordStatus.Learned});
+            Words.Add(new Word { NativeWord = "кот", TranslatedWord = "cat", Status = WordStatus.NeedToLearn});
+            Words.Add(new Word { NativeWord = "бобек", TranslatedWord = "dog", Status = WordStatus.NeedToRepeat});
+            DbOperations.AddOrUpdateWord(Words[0]);
+            DbOperations.AddOrUpdateWord(Words[1]);
+            DbOperations.AddOrUpdateWord(Words[2]);
 #endif
         }
         #endregion
 
         #region commands
+        private void DeleteWordExecute(object word)
+        {
+            if (word is Word)
+            {
+                DbOperations.DeleteWord(((Word)word).Id);
+                Words?.Remove((Word)word);
+            }
+        }
+
         private void AddWordExecute(object obj) //TODO: refactor, create dialog service
         {
             var viewModel = Factory.Factory.Instance.CreateInstance<AddWordViewModel>(typeof(IAddWordViewModel));
@@ -66,6 +81,7 @@ namespace WordTrainer.ViewModels
             if (word != null)
             {
                 Words?.Add(word);
+                DbOperations.AddOrUpdateWord(word);
             }
             addWordDialog.Close();
         }

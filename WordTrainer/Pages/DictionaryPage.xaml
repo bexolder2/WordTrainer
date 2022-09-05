@@ -8,36 +8,47 @@
       mc:Ignorable="d"
       Title="DictionaryPage">
 
-    <Page.Resources>
-        <DataTemplate x:Key="CellWithButton">
-            <Grid>
-                <TextBlock Text="{Binding NativeWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           VerticalAlignment="Center"/>
-
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                        Margin="10,0,0,0"
-                        Width="30"
-                        Height="30">
-                    <materialDesign:PackIcon Kind="DeleteForever" 
-                                             Height="20" 
-                                             Width="20"/>
-                </Button>
-            </Grid>
-        </DataTemplate>
-    </Page.Resources>
-    
     <Grid>
-        <DataGrid HorizontalAlignment="Stretch"
+        <DataGrid x:Name="DictionaryGrid"
+                  HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   Margin="10"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Words, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+            <DataGrid.Resources>
+                <Style x:Key="CellTextBlockStyle" TargetType="TextBlock">
+                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+
+                <DataTemplate x:Key="CellWithButton">
+                    <Grid>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                Margin="10,0,0,0"
+                                Width="30"
+                                Height="30"
+                                DataContext="{Binding ElementName=DictionaryGrid, Path=DataContext}"
+                                Command="{Binding DeleteWordCommand}"
+                                CommandParameter="{Binding ElementName=DictionaryGrid, Path=SelectedItem}">
+                            <materialDesign:PackIcon Kind="DeleteForever" 
+                                                     Height="20" 
+                                                     Width="20"/>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </DataGrid.Resources>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ENG" 
                                     Width="*"
-                                    Binding="{Binding TranslatedWord}"/>
-                <DataGridTemplateColumn Header="RUS"
+                                    Binding="{Binding TranslatedWord}"
+                                    ElementStyle="{StaticResource CellTextBlockStyle}"/>
+                <DataGridTextColumn Header="RUS"
                                         Width="*"
+                                        Binding="{Binding NativeWord}"
+                                        ElementStyle="{StaticResource CellTextBlockStyle}"/>
+                <DataGridTemplateColumn Width="75"
                                         CellTemplate="{StaticResource CellWithButton}"/>
             </DataGrid.Columns>
         </DataGrid>
