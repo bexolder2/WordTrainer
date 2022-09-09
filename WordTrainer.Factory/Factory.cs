@@ -31,14 +31,14 @@ namespace WordTrainer.Factory
             }
         }
 
-        public E CreateFrameworkElement<E>(Type interface_) where E : FrameworkElement
+        public E CreateFrameworkElement<E>(Type interface_, params object?[]? args) where E : FrameworkElement
         {
             E frameworkElement = null;
             if (interface_ != null)
             {
                 if (types.ContainsKey(interface_))
                 {
-                    frameworkElement = (E)Activator.CreateInstance(types[interface_]);
+                    frameworkElement = (E)Activator.CreateInstance(types[interface_], args);
                 }
             }
             else
@@ -49,14 +49,14 @@ namespace WordTrainer.Factory
             return frameworkElement;
         }
 
-        public E CreateInstance<E>(Type interface_) where E : class
+        public E CreateInstance<E>(Type interface_, params object?[]? args) where E : class
         {
             E newInstance = null;
             if (interface_ != null)
             {
                 if (types.ContainsKey(interface_))
                 {
-                    newInstance = (E)Activator.CreateInstance(types[interface_]);
+                    newInstance = (E)Activator.CreateInstance(types[interface_], args);
                 }
             }
             else
