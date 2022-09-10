@@ -1,6 +1,7 @@
 ﻿<Application x:Class="WordTrainer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converter="clr-namespace:WordTrainer.Helpers"
              xmlns:local="clr-namespace:WordTrainer">
     <Application.Resources>
         <ResourceDictionary>
@@ -12,6 +13,10 @@
 
                 <ResourceDictionary Source="Styles/Brushes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Converters -->
+            <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <converter:VisibilityInvertorConverter x:Key="VisibilityInvertorConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
