@@ -23,6 +23,7 @@
     <None Remove="Pages\DictionaryPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="Pages\TrainingPage.xaml" />
+    <None Remove="Pages\WordTranslationPage.xaml" />
     <None Remove="Styles\Brushes.xaml" />
   </ItemGroup>
 

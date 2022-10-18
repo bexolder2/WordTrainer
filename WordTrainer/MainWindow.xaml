@@ -6,6 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WordTrainer"
         mc:Ignorable="d"
+        MinWidth="1000"
+        MinHeight="700"
         Title="MainWindow">
     <Grid>
         <TabControl materialDesign:ColorZoneAssist.Mode="Standard"
@@ -23,7 +25,8 @@
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="DictionaryFrame"/>
+                <Frame x:Name="DictionaryFrame"
+                       NavigationUIVisibility="Hidden"/>
             </TabItem>
 
             <TabItem>
@@ -38,7 +41,8 @@
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="TrainingFrame"/>
+                <Frame x:Name="TrainingFrame"
+                       NavigationUIVisibility="Hidden"/>
             </TabItem>
 
             <TabItem>
@@ -53,7 +57,8 @@
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame x:Name="SettingsFrame"/>
+                <Frame x:Name="SettingsFrame"
+                       NavigationUIVisibility="Hidden"/>
             </TabItem>
         </TabControl>
     </Grid>

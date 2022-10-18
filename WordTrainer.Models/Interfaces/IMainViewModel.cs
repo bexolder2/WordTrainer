@@ -1,6 +1,4 @@
 ﻿namespace WordTrainer.Models.Interfaces
 {
-    public interface IMainViewModel
-    {
-    }
+    public interface IMainViewModel : IViewModel { }
 }
