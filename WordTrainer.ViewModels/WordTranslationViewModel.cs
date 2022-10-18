@@ -168,9 +168,19 @@ namespace WordTrainer.ViewModels
 
         private void CheckTranslationExecute(object selectedTranslation)
         {
-            if (selectedTranslation != null && selectedTranslation is string word)
+            if (selectedTranslation != null)
             {
-                if (word == currentWord.NativeWord)
+                string translation = string.Empty;
+                if (selectedTranslation is KeyValuePair<int, string> word)
+                {
+                    translation = word.Value;
+                }
+                else if (selectedTranslation is string)
+                {
+                    translation = (string)selectedTranslation;
+                }
+
+                if (translation == currentWord.NativeWord)
                 {
                     //TODO: logic for definition word as learned
                     //TODO: color animation
