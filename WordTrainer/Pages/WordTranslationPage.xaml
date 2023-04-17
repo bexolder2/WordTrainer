@@ -29,7 +29,8 @@
                                          Width="35" />
             </Button>
 
-            <materialDesign:Card Background="{DynamicResource PrimaryHueDarkBrush}"
+            <materialDesign:Card Background="{Binding AnswerStatus, Converter={StaticResource AnswerToBackgroundConverter}, 
+                                              Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                  Width="300"
                                  Height="200"
@@ -59,11 +60,23 @@
                                 Width="300"
                                 Height="50"
                                 HorizontalAlignment="Center"
-                                Content="{Binding Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                Content="{Binding}"
                                 Command="{Binding ElementName=TranslationsList, Path=DataContext.CheckTranslationCommand}"
-                                CommandParameter="{Binding Value}"/>
+                                CommandParameter="{Binding}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+                <ListView.Resources>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="{Binding AnswerStatus, 
+                                                                      Converter={StaticResource AnswerToBackgroundConverter}, 
+                                                                      Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
             </ListView>
         </Grid>
 

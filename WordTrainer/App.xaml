@@ -17,6 +17,7 @@
             <!-- Converters -->
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <converter:VisibilityInvertorConverter x:Key="VisibilityInvertorConverter"/>
+            <converter:AnswerToBackgroundConverter x:Key="AnswerToBackgroundConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

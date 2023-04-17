@@ -20,8 +20,16 @@
                 <Style x:Key="CellTextBlockStyle" TargetType="TextBlock">
                     <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
                     <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Margin" Value="0,0,0,4"/>
                 </Style>
 
+                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+                
                 <DataTemplate x:Key="CellWithButton">
                     <Grid>
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
@@ -38,16 +46,16 @@
                     </Grid>
                 </DataTemplate>
             </DataGrid.Resources>
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ENG" 
                                     Width="*"
                                     Binding="{Binding TranslatedWord}"
-                                    ElementStyle="{StaticResource CellTextBlockStyle}"/>
+                                    ElementStyle="{StaticResource CellTextBlockStyle}" />
                 <DataGridTextColumn Header="RUS"
-                                        Width="*"
-                                        Binding="{Binding NativeWord}"
-                                        ElementStyle="{StaticResource CellTextBlockStyle}"/>
+                                    Width="*"
+                                    Binding="{Binding NativeWord}"
+                                    ElementStyle="{StaticResource CellTextBlockStyle}" />
                 <DataGridTemplateColumn Width="75"
                                         CellTemplate="{StaticResource CellWithButton}"/>
             </DataGrid.Columns>
